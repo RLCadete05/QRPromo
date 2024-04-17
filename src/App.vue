@@ -1,12 +1,17 @@
 <template>
   <v-app>
-    <v-main>
+    <!-- <v-main>
       <DashboardPage />
-    </v-main>
-
+    </v-main>  -->
+    <MenuDefault />
+    <v-container>
+      <RouterView></RouterView>
+    </v-container>
   </v-app>
 </template>
 
-<script setup>
-  //
-</script>
+<style>
+body {
+  background-color: #f0f3f8 !important;
+}
+</style>

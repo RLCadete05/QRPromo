@@ -1,6 +1,6 @@
 <!-- eslint-disable vue/no-lone-template -->
 <template>
-  <MenuTeste />
+  <MenuDefault  />
   <!-- <div style="max-width: 1200px" class="mx-auto">
     <v-row>
       <v-col>
@@ -13,6 +13,5 @@
 <script>
 export default {
   name: "DashboardPage",
-
 };
 </script>
