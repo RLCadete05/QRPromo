@@ -81,6 +81,23 @@
                     required
                   ></v-text-field>
                 </v-col>
+
+                <v-col cols="12">
+                  <v-container>
+                    <v-file-input
+                      v-model="selectedFile"
+                      label="Imagem padrão da promoção *"
+                      accept="image/*"
+                      @change="onFileChange"
+                    ></v-file-input>
+
+                    <v-img
+                      v-if="selectedFile"
+                      :src="imageUrl"
+                      width="300"
+                    ></v-img>
+                  </v-container>
+                </v-col>
               </v-row>
             </v-card-text>
 
@@ -90,14 +107,14 @@
               <v-spacer></v-spacer>
 
               <v-btn
-                text="Close"
+                text="VOLTAR"
                 variant="plain"
                 @click="dialog = false"
               ></v-btn>
 
               <v-btn
                 color="primary"
-                text="Save"
+                text="SALVAR"
                 variant="tonal"
                 @click="dialog = false"
               ></v-btn>
@@ -107,7 +124,7 @@
       </div>
     </div>
 
-    <v-row style="background-color: #ffffff">
+    <!-- <v-row style="background-color: #ffffff">
       <v-col>
         <v-container class="d-flex align-center flex-wrap-reverse">
           <v-card>
@@ -122,7 +139,32 @@
           </v-card>
         </v-container>
       </v-col>
-    </v-row>
+    </v-row> -->
+
+    <v-card>
+      <v-tabs v-model="tab" align-tabs="center" stacked>
+        <v-tab value="tab-1">
+          <v-icon>mdi-help-circle-outline</v-icon>
+          ATIVAS
+        </v-tab>
+
+        <v-tab value="tab-2">
+          <v-icon>mdi-help-circle-outline</v-icon>
+          INATIVAS
+        </v-tab>
+      </v-tabs>
+
+      <v-window v-model="tab" class="ml-3 mr-3 mt-3 mb-3">
+        <v-window-item v-for="i in 3" :key="i" :value="'tab-' + i">
+          <v-alert type="warning" variant="outlined" color="primary">
+            {{ text }}
+          </v-alert>
+          <!-- <v-card>
+            <v-card-text>{{ text }}</v-card-text>
+          </v-card> -->
+        </v-window-item>
+      </v-window>
+    </v-card>
   </div>
 </template>
 
@@ -134,7 +176,24 @@ export default {
       dialog: false,
 
       items: [{ title: "Mais antigos" }, { title: "Mais recentes" }],
+
+      tab: null,
+      text: "Nenhuma promoção ativa encontrada!",
+
+      selectedFile: null,
+      imageUrl: null,
     };
+  },
+  methods: {
+    onFileChange(event) {
+      // Captura o arquivo selecionado pelo usuário
+      const file = event.target.files[0];
+
+      // Atualiza a visualização da imagem
+      if (file) {
+        this.imageUrl = URL.createObjectURL(file);
+      }
+    },
   },
 };
 </script>
