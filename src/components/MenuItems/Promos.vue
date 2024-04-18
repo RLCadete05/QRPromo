@@ -43,7 +43,7 @@
             ></v-btn>
           </template>
 
-          <v-card prepend-icon="mdi-account" title="Promoção">
+          <v-card prepend-icon="mdi-qrcode-scan" title="Promoção">
             <v-card-text>
               <v-row dense>
                 <v-col cols="12" sm="6">
@@ -124,23 +124,6 @@
       </div>
     </div>
 
-    <!-- <v-row style="background-color: #ffffff">
-      <v-col>
-        <v-container class="d-flex align-center flex-wrap-reverse">
-          <v-card>
-            <v-card-actions>
-              <v-btn>
-                ATIVAS <v-icon icon="mdi-help-circle-outline" end></v-icon
-              ></v-btn>
-              <v-btn>
-                INATIVAS <v-icon icon="mdi-help-circle-outline" end></v-icon
-              ></v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-container>
-      </v-col>
-    </v-row> -->
-
     <v-card>
       <v-tabs v-model="tab" align-tabs="center" stacked>
         <v-tab value="tab-1">
@@ -159,9 +142,6 @@
           <v-alert type="warning" variant="outlined" color="primary">
             {{ text }}
           </v-alert>
-          <!-- <v-card>
-            <v-card-text>{{ text }}</v-card-text>
-          </v-card> -->
         </v-window-item>
       </v-window>
     </v-card>
@@ -186,10 +166,8 @@ export default {
   },
   methods: {
     onFileChange(event) {
-      // Captura o arquivo selecionado pelo usuário
       const file = event.target.files[0];
 
-      // Atualiza a visualização da imagem
       if (file) {
         this.imageUrl = URL.createObjectURL(file);
       }
